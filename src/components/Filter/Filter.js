@@ -1,10 +1,11 @@
 import React from 'react';
+import {fixName} from "../../helpers/helpers";
 
 const Filter = (props) => {
 
     function renderOptions(){
         return props.options.map(function(option, index){
-            return <option key={index} value={option}>{option}</option>
+            return <option key={index} value={option}>{fixName(option)}</option>
         });
     }
 

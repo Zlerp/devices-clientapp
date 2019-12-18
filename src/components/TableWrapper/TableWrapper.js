@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import './TableWrapper.scss';
 import Filter from './../Filter/Filter';
+import {fixName} from './../../helpers/helpers';
 
 import orderBy from 'lodash/orderBy';
 
@@ -60,7 +61,7 @@ class TableWrapper extends Component  {
            return (
                <tr key={device.id}>
                    <td>{device.system_name}</td>
-                   <td>{device.type}</td>
+                   <td>{fixName(device.type)}</td>
                    <td>{device.hdd_capacity} GB</td>
                </tr>
            );
