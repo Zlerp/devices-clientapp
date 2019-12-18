@@ -56,7 +56,7 @@ class TableWrapper extends Component  {
                 return device.type === self.state.filterBy;
             });
         }
-        return filterArray.map(function(device, index){
+        return filterArray.map(function(device){
            return (
                <tr key={device.id}>
                    <td>{device.system_name}</td>
@@ -77,7 +77,7 @@ class TableWrapper extends Component  {
 
                         <Filter classPass="mr-3"
                                 title="Device Type"
-                                options={['All', 'WINDOWS_WORKSTATION', 'WINDOWS_SERVER', 'MAC']}
+                                options={['ALL', 'WINDOWS_WORKSTATION', 'WINDOWS_SERVER', 'MAC']}
                                 sortFilterFunction={this.filterType}/>
                         <Filter title="Sort by"
                                 options={['HDD Capacity', 'System Name']}
