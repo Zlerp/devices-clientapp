@@ -1,7 +1,13 @@
 
 #NinaRMM Challenge
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-### Clone and Run the Prjoect:
+
+
+### Prerequisites:
+You must clone and run the project here: https://github.com/NinjaMSP/devicesTask_serverApp   
+The devicesTask_serverApp project **MUST** be ran on port 3000.
+
+### Clone and Run the devices-clientapp Project:
 
 Once Cloned, go into project root directory and run:
 
