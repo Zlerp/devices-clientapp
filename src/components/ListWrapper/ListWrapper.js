@@ -7,6 +7,7 @@ import {fixName} from './../../helpers/helpers';
 import orderBy from 'lodash/orderBy';
 import ListDevices from "./ListDevices/ListDevices";
 
+import ModalWrapper from './../Modal/ModalWrapper';
 
 class TableWrapper extends Component  {
     constructor(props){
@@ -57,18 +58,24 @@ class TableWrapper extends Component  {
             <div>
 
                 <div className="filters my-3">
-                    <div className="d-flex align-items-center">
-                        <p className="mb-0 mr-4">Filters:</p>
-
-                        <Filter classPass="mr-3"
-                                title="Device Type"
-                                options={['ALL', 'WINDOWS_WORKSTATION', 'WINDOWS_SERVER', 'MAC']}
-                                sortFilterFunction={this.filterType}/>
-                        <Filter title="Sort by"
-                                options={['HDD Capacity', 'System Name']}
-                                sortFilterFunction={ this.sortFunction}/>
+                    <div className="row">
+                        <div className="col-12 col-lg-8 mb-3">
+                            <div className="d-flex align-items-center">
+                                <p className="mb-0 mr-4">Filters:</p>
+                                <Filter classPass="mr-3"
+                                        title="Device Type"
+                                        options={['ALL', 'WINDOWS_WORKSTATION', 'WINDOWS_SERVER', 'MAC']}
+                                        sortFilterFunction={this.filterType}/>
+                                <Filter title="Sort by"
+                                        options={['HDD Capacity', 'System Name']}
+                                        sortFilterFunction={ this.sortFunction}/>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-4 d-flex justify-content-lg-end"><ModalWrapper/></div>
                     </div>
+
                 </div>
+
 
 
                 <div className="list-group">
