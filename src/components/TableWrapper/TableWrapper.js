@@ -3,12 +3,16 @@ import axios from 'axios';
 import './TableWrapper.scss';
 import Filter from './../Filter/Filter';
 
+import orderBy from 'lodash/orderBy';
+
+
 class TableWrapper extends Component  {
     constructor(props){
         super(props);
 
         this.state = {
             deviceArray: [],
+            filterBy: 'ALL',
         };
     }
 
@@ -22,19 +26,42 @@ class TableWrapper extends Component  {
             })
     }
 
-
     componentDidMount(){
         this.requestApi(`http://localhost:3000/devices`);
     }
 
+    sortFunction = (sortBy) => {
+        let array = this.state.deviceArray;
+        if (sortBy === 'HDD Capacity') {
+            array = orderBy(array, function (o) { return Number(o.hdd_capacity); }, ['asc']);
+        } else if (sortBy === 'System Name') {
+            array = orderBy(array, ['system_name'], ['asc']);
+        }
+        this.setState({
+            deviceArray: array
+        })
+    };
+
+    filterType = (filterBy) => {
+        this.setState({
+            filterBy: filterBy
+        })
+    };
 
     renderDevices(){
-        return this.state.deviceArray.map(function(device, index){
+        let self = this;
+        let filterArray = this.state.deviceArray;
+        if (this.state.filterBy !== 'ALL') {
+            filterArray = filterArray.filter( function (device) {
+                return device.type === self.state.filterBy;
+            });
+        }
+        return filterArray.map(function(device, index){
            return (
                <tr key={device.id}>
                    <td>{device.system_name}</td>
                    <td>{device.type}</td>
-                   <td>{device.hdd_capacity}</td>
+                   <td>{device.hdd_capacity} GB</td>
                </tr>
            );
         });
@@ -50,9 +77,11 @@ class TableWrapper extends Component  {
 
                         <Filter classPass="mr-3"
                                 title="Device Type"
-                                options={['All', 'WINDOWS_WORKSTATIONS', 'WINDOWS_SERVER', 'MAC']} />
+                                options={['All', 'WINDOWS_WORKSTATION', 'WINDOWS_SERVER', 'MAC']}
+                                sortFilterFunction={this.filterType}/>
                         <Filter title="Sort by"
-                                options={['HDD Capacity', 'System Name']} />
+                                options={['HDD Capacity', 'System Name']}
+                                sortFilterFunction={ this.sortFunction}/>
                     </div>
                 </div>
 
