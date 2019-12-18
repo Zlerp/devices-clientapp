@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TableWrapper from './components/TableWrapper/TableWrapper';
+import ListWrapper from './components/ListWrapper/ListWrapper';
 
 
 function App() {
   return (
       <div>
         <div className="container">
-
-          <TableWrapper />
+          <ListWrapper />
         </div>
       </div>
   );

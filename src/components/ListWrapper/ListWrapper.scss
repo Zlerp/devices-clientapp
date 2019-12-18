@@ -1,0 +1,18 @@
+.list-group {
+  max-width: 400px;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 5px;
+
+  .list-group-item {
+    border-left: none;
+    border-right: none;
+    &:first-of-type {
+      border-top: none;
+    }
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}

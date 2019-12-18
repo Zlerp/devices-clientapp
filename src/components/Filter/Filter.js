@@ -1,5 +1,6 @@
 import React from 'react';
 import {fixName} from "../../helpers/helpers";
+import './Filter.scss'
 
 const Filter = (props) => {
 

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import './TableWrapper.scss';
+import './ListWrapper.scss';
 import Filter from './../Filter/Filter';
 import {fixName} from './../../helpers/helpers';
 
 import orderBy from 'lodash/orderBy';
+import ListDevices from "./ListDevices/ListDevices";
 
 
 class TableWrapper extends Component  {
@@ -24,12 +25,14 @@ class TableWrapper extends Component  {
                 this.setState(prevState => ({
                     deviceArray:  data,
                 }));
+                this.sortFunction('HDD Capacity');
             })
     }
 
     componentDidMount(){
         this.requestApi(`http://localhost:3000/devices`);
     }
+
 
     sortFunction = (sortBy) => {
         let array = this.state.deviceArray;
@@ -48,25 +51,6 @@ class TableWrapper extends Component  {
             filterBy: filterBy
         })
     };
-
-    renderDevices(){
-        let self = this;
-        let filterArray = this.state.deviceArray;
-        if (this.state.filterBy !== 'ALL') {
-            filterArray = filterArray.filter( function (device) {
-                return device.type === self.state.filterBy;
-            });
-        }
-        return filterArray.map(function(device){
-           return (
-               <tr key={device.id}>
-                   <td>{device.system_name}</td>
-                   <td>{fixName(device.type)}</td>
-                   <td>{device.hdd_capacity} GB</td>
-               </tr>
-           );
-        });
-    }
 
     render(){
         return (
@@ -87,18 +71,11 @@ class TableWrapper extends Component  {
                 </div>
 
 
-                <table className="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">System Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Capacity</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.renderDevices()}
-                    </tbody>
-                </table>
+                <div className="list-group">
+                    <ListDevices deviceArray={this.state.deviceArray}
+                        filterBy={this.state.filterBy}/>
+                </div>
+
             </div>
         );
     }
