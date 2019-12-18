@@ -17,6 +17,7 @@ class ListWrapper extends Component  {
 
         };
     }
+    apiEndpoint = 'http://localhost:3000/';
 
 
     requestApi(url) {
@@ -30,7 +31,7 @@ class ListWrapper extends Component  {
     }
 
     componentDidMount(){
-        this.requestApi(`http://localhost:3000/devices`);
+        this.requestApi(`${this.apiEndpoint}devices`);
     }
 
 
@@ -65,7 +66,7 @@ class ListWrapper extends Component  {
             hdd_capacity: data.hdd_capacity
         };
 
-        axios.post(`http://localhost:3000/devices`, device )
+        axios.post(`${this.apiEndpoint}devices`, device )
             .then(res => {
                 this.setState({
                     deviceArray: [...this.state.deviceArray, res.data]
@@ -75,7 +76,7 @@ class ListWrapper extends Component  {
     };
 
     deleteDevice = (id) => {
-        axios.delete(`http://localhost:3000/devices/${id}`)
+        axios.delete(`${this.apiEndpoint}devices/${id}`)
             .then(res => {
 
                 let array = [...this.state.deviceArray];
@@ -96,7 +97,7 @@ class ListWrapper extends Component  {
         };
 
 
-        axios.put(`http://localhost:3000/devices/${device.id}`, device )
+        axios.put(`${this.apiEndpoint}devices/${device.id}`, device )
             .then(res => {
                 let array = [...this.state.deviceArray];
                 let index = array.findIndex(obj => obj.id === device.id) ;
