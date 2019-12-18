@@ -1,10 +1,9 @@
 .list-group {
-  max-width: 400px;
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 75px);
   overflow: auto;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: 5px;
-
+  max-width: 500px;
   .list-group-item {
     border-left: none;
     border-right: none;
@@ -14,5 +13,12 @@
     &:last-of-type {
       border-bottom: none;
     }
+  }
+}
+
+
+@media (max-width: 575px) {
+  .list-group {
+      max-height: calc(100vh - 190px);
   }
 }
